@@ -11,90 +11,114 @@ public class TilesProject {
 //        System.out.print("Enter room area: ");
 //        int roomArea = inputArea.nextInt();
 
-        int[] tileWidth = new int[9];
-        tileWidth[0]=2;
-        tileWidth[1]=3;
-        tileWidth[2]=4;
-        tileWidth[3]=5;
-        tileWidth[4]=6;
-        tileWidth[5]=7;
-        tileWidth[6]=8;
-        tileWidth[7]=9;
-        tileWidth[8]=10;
+        class Tile {
+
+            int width;
+            int length;
+            int area;
+            int price;
+
+            public Tile(int width, int length, int area, int price) {
+                this.width = width;
+                this.length = length;
+                this.area = area;
+                this.price = price;
+            }
+
+        }
+
+        Tile tile1 = new Tile(2, 2, 36, 100);
+        Tile tile2 = new Tile(3, 3, 48, 150);
+        Tile tile3 = new Tile(4, 4, 56, 180);
 
 
-        int[] tileLength= new int [9];
-        tileLength[0]=2;
-        tileLength[1]=3;
-        tileLength[2]=4;
-        tileLength[3]=5;
-        tileLength[4]=6;
-        tileLength[5]=7;
-        tileLength[6]=8;
-        tileLength[7]=9;
-        tileLength[8]=10;
-
-        int[] tileArea = new int[9];
-        tileArea[0]=36;
-        tileArea[1]=48;
-        tileArea[2]=56;
-        tileArea[3]=60;
-        tileArea[4]=72;
-        tileArea[5]=70;
-        tileArea[6]=64;
-        tileArea[7]=54;
-        tileArea[8]=40;
-
-        int[] tilePrice = new int[9];
-        tilePrice[0]=100;
-        tilePrice[1]=150;
-        tilePrice[2]=180;
-        tilePrice[3]=200;
-        tilePrice[4]=250;
-        tilePrice[5]=300;
-        tilePrice[6]=350;
-        tilePrice[7]=400;
-        tilePrice[8]=450;
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("Enter room width:");
+        int roomWidth = sc.nextInt();
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println((i + ". " + (i + 1) + "x" + (i + 1)));
+        System.out.println("Enter room length:");
+        int roomLength = sc.nextInt();
+
+        int roomArea = roomWidth * roomLength;
+
+        System.out.println("Room area: " + roomArea);
+
+        System.out.println("\nChoose a tile:");
+        System.out.println("1. 2x2 - ₹100");
+        System.out.println("2. 3x3 - ₹150");
+        System.out.println("3. 4x4 - ₹180");
+
+        int tileChoice = sc.nextInt();
+
+        int tilePrice = 0;
+
+        switch (tileChoice) {
+            case 1:
+                tilePrice = tile1.price;
+                break;
+
+            case 2:
+                tilePrice = tile2.price;
+                break;
+
+            case 3:
+                tilePrice = tile3.price;
+                break;
+
+            default:
+                System.out.println("Invalid tile choice");
         }
 
-        System.out.println("Enter your option:");
-        int option = sc.nextInt();
+        int tileArea = 0;
 
-        if (option >= 1 && option <= 5) {
-            int size = option + 1;
-            System.out.println("You selected " + size + "x" + size);
-        } else {
-            System.out.println("Invalid option");
+        switch (tileChoice) {
+            case 1:
+                tileArea = tile1.area;
+                break;
+
+            case 2:
+                tileArea = tile2.area;
+                break;
+
+            case 3:
+                tileArea = tile3.area;
+                break;
         }
-        sc.close();
+
+        int numberOfTiles = (int) Math.ceil((double) roomArea / tileArea);
+
+        int roomCost = numberOfTiles * tilePrice;
+
+        System.out.println("Number of tiles required: " + numberOfTiles);
+        System.out.println("Cost for this room: ₹" + roomCost);
 
 
 
-        BufferedWriter  br1 = new BufferedWriter(new FileWriter("abc.csv"));
-        String firstLine = "Tile size, Tile length, Tile width, Tile price";
-        br1.write(firstLine);
-        br1.newLine();
-        String secondLine = "30,40,50,60";
-        br1.write(secondLine);
-        br1.newLine();
-        String thirdLine = "20,30,40,50";
-        br1.write(thirdLine);
-        br1.newLine();
 
 
 
-        String[] firstLineArray = firstLine.split(", ");
-        System.out.println((firstLineArray));
-        System.out.println(firstLineArray[0]);
-        System.out.println(firstLineArray[1]);
-        System.out.println(firstLineArray[2]);
-        System.out.println(firstLineArray[3]);
+
+//        BufferedWriter  br1 = new BufferedWriter(new FileWriter("abc.csv"));
+//        String firstLine = "Tile size, Tile length, Tile width, Tile price";
+//        br1.write(firstLine);
+//        br1.newLine();
+//        String secondLine = "30,40,50,60";
+//        br1.write(secondLine);
+//        br1.newLine();
+//        String thirdLine = "20,30,40,50";
+//        br1.write(thirdLine);
+//        br1.newLine();
+
+
+
+//        String[] firstLineArray = firstLine.split(", ");
+//        System.out.println((firstLineArray));
+//        System.out.println(firstLineArray[0]);
+//        System.out.println(firstLineArray[1]);
+//        System.out.println(firstLineArray[2]);
+//        System.out.println(firstLineArray[3]);
 
         //String[] secondLineArray =
 //        br1.newLine();
@@ -102,7 +126,7 @@ public class TilesProject {
 //        br1.newLine();
 //        br1.write("30, 50, 33, 30");
 
-        br1.close();
+        //br1.close();
 
 
 
